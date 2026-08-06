@@ -1,4 +1,4 @@
-import { Apple, Droplets, Flame, Plus, Scale, Wheat } from "lucide-react";
+import { Apple, Droplets, Flame, Plus, Scale, ShieldCheck, Wheat } from "lucide-react";
 import Link from "next/link";
 import { AppShell } from "@/components/layout/AppShell";
 import { MealCard } from "@/components/meals/MealCard";
@@ -11,11 +11,13 @@ import { MacroIndicator } from "@/components/dashboard/MacroIndicator";
 import { formatDateBR, formatNumberBR } from "@/lib/formatters";
 import { getDailyTotals, getRemainingCalories } from "@/lib/nutrition/calculations";
 import { requireCurrentUser } from "@/lib/auth/user";
+import { isAdminEmail } from "@/lib/supabase/env";
 import { listMealsByDate } from "@/lib/repositories/meals";
 import { getProfileGoals } from "@/lib/repositories/profiles";
 
 export default async function DashboardPage() {
-  await requireCurrentUser();
+  const user = await requireCurrentUser();
+  const isAdmin = isAdminEmail(user.email);
   const today = new Date().toISOString().slice(0, 10);
   const [meals, goals] = await Promise.all([listMealsByDate(today), getProfileGoals()]);
   const totals = getDailyTotals(meals);
@@ -55,6 +57,28 @@ export default async function DashboardPage() {
         <Notice>
           Os alimentos e registros exibidos são exemplos para teste visual. Revise valores nutricionais antes do uso real.
         </Notice>
+        {isAdmin ? (
+          <Card className="border-sage-100 bg-sage-100/60">
+            <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+              <div className="flex gap-3">
+                <span className="grid size-11 shrink-0 place-items-center rounded-2xl bg-white text-sage-500 shadow-soft">
+                  <ShieldCheck size={20} aria-hidden="true" />
+                </span>
+                <div>
+                  <h2 className="text-lg font-semibold text-ink">Área administrativa</h2>
+                  <p className="mt-1 text-sm leading-6 text-stone-600">
+                    Acesse leads, avaliações, rascunhos e publicação de planos.
+                  </p>
+                </div>
+              </div>
+              <Link href="/admin">
+                <Button className="w-full sm:w-auto" variant="secondary">
+                  Abrir admin
+                </Button>
+              </Link>
+            </div>
+          </Card>
+        ) : null}
         <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
           <StatCard
             label="Calorias"

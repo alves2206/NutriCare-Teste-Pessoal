@@ -33,11 +33,14 @@ export default function HomePage() {
             </Link>
             <Link
               className="inline-flex min-h-12 items-center justify-center rounded-2xl bg-white px-5 py-3 text-sm font-semibold text-ink ring-1 ring-rosepetal-200 hover:bg-rosepetal-50"
-              href="/planos"
+              href="/login"
             >
-              Ver planos
+              Já sou cliente
             </Link>
           </div>
+          <Link className="mt-4 inline-flex text-sm font-semibold text-rosepetal-500 hover:text-ink" href="/planos">
+            Ver planos antes de responder
+          </Link>
           <div className="mt-8 grid gap-3 sm:grid-cols-3">
             <TrustItem icon={Utensils} text="Preferências organizadas" />
             <TrustItem icon={Dumbbell} text="Treino por perfil" />
