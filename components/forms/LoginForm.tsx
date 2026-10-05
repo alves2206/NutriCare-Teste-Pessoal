@@ -31,12 +31,25 @@ export function LoginForm() {
 
     try {
       const supabase = createSupabaseBrowserClient();
-      const { error } = await supabase.auth.signInWithPassword({
-        email: values.email,
-        password: values.password
+      let timeoutId: ReturnType<typeof setTimeout> | undefined;
+      const result = await Promise.race([
+        supabase.auth.signInWithPassword({
+          email: values.email,
+          password: values.password
+        }),
+        new Promise<never>((_, reject) => {
+          timeoutId = setTimeout(
+            () => reject(new Error("AUTH_TIMEOUT")),
+            12_000
+          );
+        })
+      ]).finally(() => {
+        if (timeoutId) {
+          clearTimeout(timeoutId);
+        }
       });
 
-      if (error) {
+      if (result.error) {
         setMessage("Não foi possível entrar. Confira e-mail e senha.");
         return;
       }
@@ -44,9 +57,11 @@ export function LoginForm() {
       // A autenticação já atualiza os cookies no navegador. Um único replace
       // evita o refresh duplicado que deixava a entrada aguardando duas renderizações.
       router.replace("/dashboard");
-    } catch {
+    } catch (error) {
       setMessage(
-        "O acesso privado está temporariamente indisponível. Tente novamente em alguns instantes."
+        error instanceof Error && error.message === "AUTH_TIMEOUT"
+          ? "O serviço demorou para responder. Atualize a página e tente novamente."
+          : "O acesso privado está temporariamente indisponível. Tente novamente em alguns instantes."
       );
     }
   }
