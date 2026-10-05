@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { LucideIcon } from "lucide-react";
-import { ArrowLeft, Brain, LockKeyhole, Sparkles } from "lucide-react";
+import { ArrowLeft, ClipboardCheck, LockKeyhole, Sparkles } from "lucide-react";
 import { PublicHeader } from "@/components/marketing/PublicHeader";
 import { PublicIntakeForm } from "@/components/marketing/PublicIntakeForm";
 import { Card } from "@/components/ui/Card";
@@ -23,12 +23,12 @@ export default function PublicEvaluationPage() {
               </p>
               <h1 className="mt-2 text-3xl font-bold text-ink">Conte sua rotina antes de escolher um plano.</h1>
               <p className="mt-3 text-sm leading-6 text-stone-600">
-                As respostas viram um lead organizado para a Iris avaliar e, depois do plano escolhido, gerar um rascunho com IA.
+                As respostas ajudam a Iris a conhecer sua rotina e preparar um acompanhamento mais adequado para você.
               </p>
             </Card>
             <Card>
               <div className="space-y-4">
-                <SideItem icon={Brain} title="IA como pré-análise" text="A IA ajuda a organizar um rascunho, sem entregar dieta completa antes do acompanhamento." />
+                <SideItem icon={ClipboardCheck} title="Avaliação cuidadosa" text="Suas respostas ajudam a entender seus objetivos, sua rotina e o que funciona para você." />
                 <SideItem icon={Sparkles} title="Plano certo" text="A pessoa escolhe entre planos com ou sem suporte próximo." />
                 <SideItem icon={LockKeyhole} title="Acesso depois" text="Login e área do cliente entram após aprovação/pagamento." />
               </div>

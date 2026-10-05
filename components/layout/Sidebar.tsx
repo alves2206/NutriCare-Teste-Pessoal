@@ -36,8 +36,8 @@ export function Sidebar() {
         })}
       </nav>
       <div className="mt-auto rounded-2xl bg-rosepetal-50 p-4 text-sm leading-6 text-stone-600">
-        <p className="font-semibold text-ink">Acesso privado</p>
-        <p className="mt-1">Uso pessoal, sem cadastro público ou área de pacientes.</p>
+        <p className="font-semibold text-ink">Acompanhamento Iris Carvalho</p>
+        <p className="mt-1">Sua rotina de alimentação e treino em um só lugar.</p>
       </div>
       <SignOutButton />
     </aside>

@@ -20,9 +20,9 @@ export default async function WorkoutsPage() {
     <AppShell>
       <div className="space-y-6">
         <PageHeader
-          eyebrow="Treinos"
-          title="Plano de treino"
-          description="Treinos publicados pelo admin/personal com base no perfil informado."
+          eyebrow="Movimento"
+          title="Meu treino"
+          description="Seus exercícios organizados para acompanhar sua evolução."
         />
         {profile && plan ? (
           <PlanViewer plan={plan} mode="workouts" />
@@ -33,12 +33,12 @@ export default async function WorkoutsPage() {
                 <Dumbbell aria-hidden="true" size={22} />
               </span>
               <h2 className="mt-4 text-lg font-semibold text-ink">
-                {profile ? "Treino em preparacao" : "Perfil inicial pendente"}
+                  {profile ? "Seu treino está sendo preparado" : "Vamos completar seu perfil"}
               </h2>
               <p className="mx-auto mt-2 max-w-md text-sm leading-6 text-stone-500">
                 {profile
-                  ? "O treino aparece aqui depois que o admin gerar, revisar e publicar o acompanhamento."
-                  : "Preencha o perfil inicial para informar objetivo, local de treino e dias disponiveis."}
+                  ? "Assim que suas orientações estiverem prontas, elas aparecerão aqui para você consultar."
+                  : "Conte um pouco mais sobre seus objetivos, local de treino e dias disponíveis."}
               </p>
               {!profile ? (
                 <div className="mt-5">

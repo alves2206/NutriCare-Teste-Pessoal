@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { LucideIcon } from "lucide-react";
-import { ArrowRight, CheckCircle2, Dumbbell, MessageCircle, Sparkles, Utensils } from "lucide-react";
+import { ArrowRight, CheckCircle2, ClipboardCheck, Dumbbell, MessageCircle, Utensils } from "lucide-react";
 import { PublicHeader } from "@/components/marketing/PublicHeader";
 import { Card } from "@/components/ui/Card";
 import { publicPlanOptions } from "@/lib/constants/marketing";
@@ -18,7 +18,7 @@ export default function HomePage() {
             Iris Carvalho · Resende RJ
           </p>
           <h1 className="mt-3 max-w-3xl text-4xl font-bold leading-tight text-ink sm:text-5xl">
-            Avaliação inteligente para um plano de alimentação e treino mais possível de seguir.
+            Um plano de alimentação e treino possível de seguir.
           </h1>
           <p className="mt-5 max-w-2xl text-base leading-7 text-stone-600">
             Um fluxo simples para entender sua rotina, preferências, restrições e objetivo antes de escolher o acompanhamento ideal.
@@ -94,7 +94,7 @@ export default function HomePage() {
             <h2 className="mt-2 text-3xl font-bold text-ink">Profissional, próximo e conectado à rotina.</h2>
             <p className="mt-3 text-sm leading-6 text-stone-600">
               A avaliação organiza as informações antes do pagamento para a Iris entender objetivo, preferências e limitações.
-              Depois, a tecnologia ajuda a estruturar o rascunho, mas a entrega final passa por revisão profissional.
+              A entrega é preparada com atenção aos seus objetivos e passa pela revisão profissional da Iris.
             </p>
           </div>
           <div className="grid gap-3 sm:grid-cols-3">
@@ -167,7 +167,7 @@ function TrustItem({ icon: Icon, text }: { icon: LucideIcon; text: string }) {
 function StepCard({ title, text }: { title: string; text: string }) {
   return (
     <Card>
-      <Sparkles className="size-5 text-rosepetal-500" aria-hidden="true" />
+      <ClipboardCheck className="size-5 text-rosepetal-500" aria-hidden="true" />
       <h3 className="mt-3 text-lg font-semibold text-ink">{title}</h3>
       <p className="mt-2 text-sm leading-6 text-stone-600">{text}</p>
     </Card>

@@ -21,19 +21,19 @@ export default async function PlanPage() {
     <AppShell>
       <div className="space-y-6">
         <PageHeader
-          eyebrow="Plano travado"
-          title="Plano alimentar"
-          description="Aqui fica o plano publicado pela administradora. A pessoa visualiza, mas nao edita as refeicoes."
+          eyebrow="Alimentação"
+          title="Minha dieta"
+          description="Suas refeições e orientações organizadas para a sua rotina."
           action={
             <Link href="/onboarding">
-              <Button variant="secondary">Atualizar perfil</Button>
+              <Button variant="secondary">Atualizar informações</Button>
             </Link>
           }
         />
         {!profile ? (
           <EmptyPlanState
-            title="Perfil inicial pendente"
-            description="Preencha a introducao para a nutricionista e personal conseguirem gerar seu acompanhamento."
+            title="Vamos completar seu perfil"
+            description="Conte um pouco mais sobre sua rotina para que seu acompanhamento fique cada vez mais adequado."
             action={
               <Link href="/onboarding">
                 <Button>Preencher perfil</Button>
@@ -44,8 +44,8 @@ export default async function PlanPage() {
           <PlanViewer plan={plan} mode="nutrition" />
         ) : (
           <EmptyPlanState
-            title="Plano em preparacao"
-            description="Seu perfil foi recebido. O plano aparece aqui depois que o admin gerar, revisar e publicar."
+            title="Sua dieta está sendo preparada"
+            description="Assim que suas orientações estiverem prontas, elas aparecerão aqui para você consultar."
           />
         )}
       </div>

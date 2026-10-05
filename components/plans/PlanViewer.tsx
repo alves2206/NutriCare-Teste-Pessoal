@@ -17,14 +17,11 @@ export function PlanViewer({ plan, mode }: PlanViewerProps) {
         <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
           <div>
             <p className="text-sm font-semibold uppercase tracking-[0.12em] text-rosepetal-500">
-              {plan.status === "published" ? "Plano publicado" : "Rascunho"}
+              {plan.status === "published" ? "Seu acompanhamento" : "Em revisão"}
             </p>
             <h2 className="mt-1 text-2xl font-bold text-ink">{plan.title}</h2>
             <p className="mt-2 text-sm leading-6 text-stone-600">{plan.notes}</p>
           </div>
-          <span className="rounded-full bg-sage-100 px-3 py-1 text-xs font-semibold text-stone-700">
-            Origem: {plan.source === "gemini" ? "Gemini" : "teste local"}
-          </span>
         </div>
       </Card>
 
@@ -34,7 +31,7 @@ export function PlanViewer({ plan, mode }: PlanViewerProps) {
             <div className="flex gap-3">
               <Flame className="mt-1 size-5 text-rosepetal-500" aria-hidden="true" />
               <div>
-                <h2 className="text-lg font-semibold text-ink">Resumo alimentar</h2>
+                <h2 className="text-lg font-semibold text-ink">Orientações da sua dieta</h2>
                 <p className="mt-2 text-sm leading-6 text-stone-600">{plan.nutritionSummary}</p>
               </div>
             </div>
@@ -62,7 +59,7 @@ export function PlanViewer({ plan, mode }: PlanViewerProps) {
                       <p className="mt-3 text-xs font-semibold uppercase tracking-[0.12em] text-stone-500">
                         {meal.calories ? `${meal.calories} kcal` : ""}
                         {meal.calories && meal.protein ? " · " : ""}
-                        {meal.protein ? `${meal.protein} g proteina` : ""}
+                        {meal.protein ? `${meal.protein} g proteína` : ""}
                       </p>
                     ) : null}
                   </div>
@@ -79,7 +76,7 @@ export function PlanViewer({ plan, mode }: PlanViewerProps) {
             <div className="flex gap-3">
               <Dumbbell className="mt-1 size-5 text-sage-500" aria-hidden="true" />
               <div>
-                <h2 className="text-lg font-semibold text-ink">Resumo dos treinos</h2>
+                <h2 className="text-lg font-semibold text-ink">Orientações do seu treino</h2>
                 <p className="mt-2 text-sm leading-6 text-stone-600">{plan.workoutSummary}</p>
               </div>
             </div>
