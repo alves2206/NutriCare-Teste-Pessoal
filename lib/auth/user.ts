@@ -1,8 +1,9 @@
 import { redirect } from "next/navigation";
+import { cache } from "react";
 import { getSupabaseEnv, isAllowedEmail } from "@/lib/supabase/env";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 
-export async function getCurrentUser() {
+export const getCurrentUser = cache(async function getCurrentUser() {
   const { isConfigured } = getSupabaseEnv();
 
   if (!isConfigured) {
@@ -24,7 +25,7 @@ export async function getCurrentUser() {
   }
 
   return user;
-}
+});
 
 export async function requireCurrentUser() {
   const user = await getCurrentUser();

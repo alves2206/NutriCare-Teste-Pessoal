@@ -41,8 +41,9 @@ export function LoginForm() {
         return;
       }
 
-      router.push("/dashboard");
-      router.refresh();
+      // A autenticação já atualiza os cookies no navegador. Um único replace
+      // evita o refresh duplicado que deixava a entrada aguardando duas renderizações.
+      router.replace("/dashboard");
     } catch {
       setMessage(
         "O acesso privado está temporariamente indisponível. Tente novamente em alguns instantes."
