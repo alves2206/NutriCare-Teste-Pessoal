@@ -8,7 +8,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@/components/ui/Button";
 import { FormField } from "@/components/ui/FormField";
 import { loginSchema, type LoginFormData } from "@/lib/validations/auth";
-import { createSupabaseBrowserClient } from "@/lib/supabase/client";
 
 export function LoginForm() {
   const [showPassword, setShowPassword] = useState(false);
@@ -30,13 +29,16 @@ export function LoginForm() {
     setMessage(null);
 
     try {
-      const supabase = createSupabaseBrowserClient();
       let timeoutId: ReturnType<typeof setTimeout> | undefined;
       const result = await Promise.race([
-        supabase.auth.signInWithPassword({
-          email: values.email,
-          password: values.password
-        }),
+        fetch("/api/auth/login", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(values)
+        }).then(async (response) => ({
+          ok: response.ok,
+          message: (await response.json().catch(() => null))?.message
+        })),
         new Promise<never>((_, reject) => {
           timeoutId = setTimeout(
             () => reject(new Error("AUTH_TIMEOUT")),
@@ -49,8 +51,8 @@ export function LoginForm() {
         }
       });
 
-      if (result.error) {
-        setMessage("Não foi possível entrar. Confira e-mail e senha.");
+      if (!result.ok) {
+        setMessage(result.message ?? "Não foi possível entrar. Confira e-mail e senha.");
         return;
       }
 
